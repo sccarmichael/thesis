@@ -1,22 +1,22 @@
-Tasks = new Mongo.Collection("tasks");
+Likes = new Mongo.Collection("likes");
 
 if (Meteor.isClient) {
 
-  Meteor.subscribe("tasks");
+  Meteor.subscribe("likes");
 
 Template.body.helpers({
-    tasks: function () {
-        return Tasks.find({}, {sort: {createdAt: -1}});
+    likes: function () {
+        return Likes.find({}, {sort: {createdAt: -1}});
       }
   });
 
 
   Template.body.events({
-    "submit .new-task": function (event) {
+    "submit .new-like": function (event) {
 
       var text = event.target.text.value;
 
-      Meteor.call("addTask", text);
+      Meteor.call("addLike", text);
 
     // Clear form
     event.target.text.value = "";
@@ -27,18 +27,24 @@ Template.body.helpers({
 
 });
 
-  Template.task.events({
+  Template.like.events({
     "click .delete": function () {
-      Meteor.call("deleteTask", this._id);
+      Meteor.call("deleteLike", this._id);
     }
   });
 
 
-  Template.task.helpers({
+  Template.like.helpers({
     isOwner: function () {
       return this.owner === Meteor.userId();
     }
   });
+
+// Template.recs.helpers({
+//   bestMatch: function () {
+//     return Likes.aggregate ( [ { $match: { text : "Likes" } } ] ), {sort: {Likes: -1}});
+//   }
+// });
 
   Accounts.ui.config({
     passwordSignupFields: "USERNAME_ONLY"
@@ -46,13 +52,13 @@ Template.body.helpers({
 }
 
 Meteor.methods({
-  addTask: function (text) {
-    // Make sure the user is logged in before inserting a task
+  addLike: function (text) {
+    // Make sure the user is logged in before inserting a like
     if (! Meteor.userId()) {
       throw new Meteor.Error("not-authorized");
     }
 
-    Tasks.insert({
+    Likes.insert({
       text: text,
       createdAt: new Date(),
       owner: Meteor.userId(),
@@ -60,14 +66,14 @@ Meteor.methods({
     });
   },
 
-  deleteTask: function (taskId) {
-    Tasks.remove(taskId);
+  deleteLike: function (likeId) {
+    Likes.remove(likeId);
   },
 
 });
 
-Meteor.publish("tasks", function () {
-  return Tasks.find({
+Meteor.publish("likes", function () {
+  return Likes.find({
     $or: [
     { owner: this.userId }
     ]

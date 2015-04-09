@@ -55,7 +55,7 @@ body {
 .icon {
   height: 70px;
   width:70px;
-  margin: 15px;
+  margin: 10px;
   float:left;
 }
 
@@ -88,7 +88,7 @@ body {
   margin-right: 15px;
 }
 
-.new-task input {
+.new-like input {
   width: 98%;
   height: 40px;
   background-color: white;
@@ -129,7 +129,7 @@ ul {
   padding-right: -2px;
 }
 
-.submit {
+#submit {
   float: right;
   font-weight: bold;
   background: none;

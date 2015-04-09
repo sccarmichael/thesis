@@ -7,8 +7,8 @@
 <body>
 	<div id="wrapper">
 		<div id="header">
-					<img class="headerlogo" src="images/Logo.png" alt="551b190215ec9fa344fb9608_Logo.png">
-				{{> loginButtons align="right"}}   
+			<img class="headerlogo" src="images/Logo.png" alt="551b190215ec9fa344fb9608_Logo.png">
+			{{> loginButtons align="right"}}   
 		</div>
 
 		<div id="content">
@@ -17,17 +17,21 @@
 				<div class="col-sm-6">
 					<div class="resultsblock">
 						<div class="row">
-						<h4>A band that I love is...</h4>
-							<form class="new-task">
+							<h4>A band that I love is...</h4>
+							<form class="new-like">
 								<input class type="text" name="text" placeholder="Band name" />
 							</form>
 							<div class="results">
 								<ul>
-									{{#each tasks}}
-									{{> task}}
+									{{#each likes}}
+									{{> like}}
 									{{/each}}
 								</ul>
 							</div>
+
+							<button type="submit" class="btn btn-primary" style="float:right; margin-right:10px; margin-top:15px">Submit
+							</button>
+
 						</div>
 					</div>
 				</div>
@@ -35,7 +39,7 @@
 					<div class="textblock" style="margin:20px">
 						<h1>Feeling stumped?</h1>
 						<h2>
-							1. Open up Spotify, Rdio, or Pandora <br>2. Click on a playlist or station that you love <br>3. Add some of your favorite artists from that list, then hit "Submit"
+							1. Open up Spotify, Rdio, or Pandora <br>2. Click on a playlist or station that you love <br>3. Add some of your favorite artists from that list, then once you're happy hit "Submit"<br>4. (Don't worry you'll be able to adjust your list easily after you're done.)
 						</h2>
 					</div>      
 				</div>
@@ -46,16 +50,15 @@
 			<div class="row">
 				<div class="span" style="padding: 20px; margin-left:0px; margin-right:0px">    
 					<div class="textblock">
-						<h1>What do you love?</h1>
-						</div>
-						<div class="textblock">
-						<img class="icon" src="images/Like.png">
+						<h1>What do you really love?</h1>
+					</div>
+					<div class="textblock">
+						<img class="icon" src="images/Like.png" style="margin-top:30px">
 						<h2>These days most of the things we "Like" on social media aren't actually things that we like in real life. As a result, it can be hard to find new stuff.</h2>
-						<img class="icon" src="images/Checks.png" style="float:right; margin-top:15px">
-						<h2 style="text-align:right">We decided to create a better way to get recommendations. It's easy; you list the things that you like, and we use them to find likeminded people from around the world.</h2> 
-						<img class="icon" src="images/Music.png">
-						<h2>
-						Add your Top 10 favorite bands below and we'll find people who like most of them too. Then we'll show you some bands that they love but you might not know about.</h2>
+						<img class="icon" src="images/Checks.png" style="float:right; margin-top:30px">
+						<h2 style="text-align:right">LikeMine is a better way to get recommendations. It's easy; you list the things that you like, and we'll use them to find likeminded people from around the world.</h2> 
+						<img class="icon" src="images/Music.png" style="margin-top:30px">
+						<h2>Sign in, then add your Top 10 favorite musical artists to your Favorites list. When you click "Submit" we'll find people who like most of them too and show you some bands that they love but you might not know about.</h2>
 
 					</div>
 				</div>
@@ -73,9 +76,16 @@
 
 </body>
 
-<template name="task">
+<template name="like">
 	<li class="{{#if checked}}checked{{/if}}">
 		<button class="delete">&times;</button>
 		<h3 class="text"> {{text}}</h3>
 	</li>
 </template>
+
+
+<!-- <template name="recs">
+  {{#each bestMatch}}
+    <div>{{Likes}}</div>
+  {{/each}}
+</template> -->
