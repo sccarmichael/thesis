@@ -35,7 +35,18 @@
 						</div>
 					</div>
 				</div>
+
 				<div class="col-sm-6">
+					<div class="recs">
+						<div class="row">
+							<h4>Recommended bands:</h4>
+							<div class="results">
+								<ul>
+									{{> recs}}
+								</ul>
+							</div>
+						</div>
+					</div>
 					<div class="textblock" style="margin:20px">
 						<h1>Feeling stumped?</h1>
 						<h2>
@@ -43,7 +54,9 @@
 						</h2>
 					</div>      
 				</div>
+
 			</div>
+
 
 			{{else}}
 
@@ -84,8 +97,20 @@
 </template>
 
 
+<template name="recs"> 
+	<div class="Likes">
+		{{#each likes}}
+		{{text}}<br>
+		{{/each}}
+	</div>
+</template>  
+
 <!-- <template name="recs">
+<div class="results">
+<ul>
   {{#each bestMatch}}
     <div>{{Likes}}</div>
   {{/each}}
+  </ul>
+  </div>
 </template> -->
