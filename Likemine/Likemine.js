@@ -4,19 +4,17 @@ if (Meteor.isClient) {
 
 	Meteor.subscribe("likes");
 
-<<<<<<< HEAD
   Template.body.helpers({
     likes: function () {
       return Likes.find({}, {sort: {createdAt: -1}});
     }
   });
-=======
+
 	Template.body.helpers({
 		likes: function () {
 			return Likes.find({}, {sort: {createdAt: -1}});
 		}
 	});
->>>>>>> origin/master
 
 	Template.body.events({
 		"submit .new-like": function (event) {
