@@ -2,75 +2,82 @@ Likes = new Mongo.Collection("likes");
 
 if (Meteor.isClient) {
 
-  Meteor.subscribe("likes");
+	Meteor.subscribe("likes");
 
+<<<<<<< HEAD
   Template.body.helpers({
     likes: function () {
       return Likes.find({}, {sort: {createdAt: -1}});
     }
   });
+=======
+	Template.body.helpers({
+		likes: function () {
+			return Likes.find({}, {sort: {createdAt: -1}});
+		}
+	});
+>>>>>>> origin/master
 
+	Template.body.events({
+		"submit .new-like": function (event) {
 
-  Template.body.events({
-    "submit .new-like": function (event) {
+			var text = event.target.text.value;
 
-      var text = event.target.text.value;
-
-      Meteor.call("addLike", text);
+			Meteor.call("addLike", text);
 
     // Clear form
     event.target.text.value = "";
 
     // Prevent default form submit
     return false;
-  }
+}
 
 });
 
-  Template.like.events({
-    "click .delete": function () {
-      Meteor.call("deleteLike", this._id);
-    }
-  });
+	Template.like.events({
+		"click .delete": function () {
+			Meteor.call("deleteLike", this._id);
+		}
+	});
 
 
-  Template.like.helpers({
-    isOwner: function () {
-      return this.owner === Meteor.userId();
-    }
-  });
+	Template.like.helpers({
+		isOwner: function () {
+			return this.owner === Meteor.userId();
+		}
+	});
 
 
-  Accounts.ui.config({
-    passwordSignupFields: "USERNAME_ONLY"
-  });
+	Accounts.ui.config({
+		passwordSignupFields: "USERNAME_ONLY"
+	});
 }
 
 Meteor.methods({
-  addLike: function (text) {
+	addLike: function (text) {
     // Make sure the user is logged in before inserting a like
     if (! Meteor.userId()) {
-      throw new Meteor.Error("not-authorized");
+    	throw new Meteor.Error("not-authorized");
     }
 
     Likes.insert({
-      text: text,
-      createdAt: new Date(),
-      owner: Meteor.userId(),
-      username: Meteor.user().username
+    	text: text,
+    	createdAt: new Date(),
+    	owner: Meteor.userId(),
+    	username: Meteor.user().username
     });
-  },
+},
 
-  deleteLike: function (likeId) {
-    Likes.remove(likeId);
-  },
+deleteLike: function (likeId) {
+	Likes.remove(likeId);
+},
 
 });
 
 Meteor.publish("likes", function () {
-  return Likes.find({
-    $or: [
-    { owner: this.userId }
-    ]
-  });
+	return Likes.find({
+		$or: [
+		{ owner: this.userId }
+		]
+	});
 });
