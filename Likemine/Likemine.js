@@ -4,10 +4,10 @@ if (Meteor.isClient) {
 
   Meteor.subscribe("likes");
 
-Template.body.helpers({
+  Template.body.helpers({
     likes: function () {
-        return Likes.find({}, {sort: {createdAt: -1}});
-      }
+      return Likes.find({}, {sort: {createdAt: -1}});
+    }
   });
 
 
@@ -40,11 +40,6 @@ Template.body.helpers({
     }
   });
 
-// Template.recs.helpers({
-//   bestMatch: function () {
-//     return Likes.aggregate ( [ { $match: { text : "Likes" } } ] ), {sort: {Likes: -1}});
-//   }
-// });
 
   Accounts.ui.config({
     passwordSignupFields: "USERNAME_ONLY"
