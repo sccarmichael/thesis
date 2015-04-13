@@ -53,13 +53,7 @@
 							1. Open up Spotify, Rdio, or Pandora <br>2. Click on a playlist or station that you love <br>3. Add some of your favorite artists from that list, then once you're happy hit "Submit"<br>4. (Don't worry you'll be able to adjust your list easily after you're done.)
 						</h2>
 					</div>  
-					<div class="resultsblock">
-						<div class="row">
-							<h4>Recommended for you:</h4>
-						</div>
-					</div>
 				</div>
-
 			</div>
 
 
@@ -101,21 +95,13 @@
 	</li>
 </template>
 
-
-<!-- <template name="submit"> 
-	<div class="Likes">
-		{{#each likes}}
-		{{text}}<br>
-		{{/each}}
-	</div>
-</template>  
- -->
-<template name="recs">
-<div class="results">
-<ul>
-  {{#each bestMatch}}
-    <div>{{Likes}}</div>
-  {{/each}}
-  </ul>
-  </div>
+<template name="submit">
+	<button class="submit"></button>
 </template>
+
+<template name="recs">
+	<li>
+		<h3>{{recs}}</h3>
+	</li>
+</template>
+

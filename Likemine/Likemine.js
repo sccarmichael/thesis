@@ -3,6 +3,7 @@ Likes = new Mongo.Collection("likes");
 if (Meteor.isClient) {
 
 	Meteor.subscribe("likes");
+	Meteor.subscribe("allLikes");
 
 	Template.body.helpers({
 		likes: function () {
@@ -10,8 +11,8 @@ if (Meteor.isClient) {
 		}
 	});
 
-	Template.body.helpers({
-		likes: function () {
+		Template.body.helpers({
+		allLikes: function () {
 			return Likes.find({}, {sort: {createdAt: -1}});
 		}
 	});
@@ -35,11 +36,17 @@ if (Meteor.isClient) {
 		}
 	});
 
-	  Template.like.helpers({
-    isOwner: function () {
-      return this.owner === Meteor.userId();
-    }
-  });
+	Template.like.helpers({
+		isOwner: function () {
+			return this.owner === Meteor.userId();
+		}
+	});
+
+	Template.submit.events({
+		"click .submit": function () {
+			console.log(allLikes.find());
+		}
+	});
 
 	Accounts.ui.config({
 		passwordSignupFields: "USERNAME_ONLY"
@@ -67,6 +74,7 @@ Meteor.methods({
 });
 
 if (Meteor.isServer) {
+
 	Meteor.publish("likes", function () {
 		return Likes.find({
 			$or: [
@@ -74,4 +82,9 @@ if (Meteor.isServer) {
 			]
 		});
 	});
+
+	Meteor.publish('allLikes', function publishFunction() {
+		return Likes.find({}, {sort: {date: -1}});
+	});
+
 }
