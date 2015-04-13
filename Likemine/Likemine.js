@@ -11,12 +11,6 @@ if (Meteor.isClient) {
 		}
 	});
 
-		Template.body.helpers({
-		allLikes: function () {
-			return Likes.find({}, {sort: {createdAt: -1}});
-		}
-	});
-
 	Template.body.events({
 		"submit .new-like": function (event) {
 
@@ -44,13 +38,14 @@ if (Meteor.isClient) {
 
 	Template.submit.events({
 		"click .submit": function () {
+
 			console.log(allLikes.find());
 		}
 	});
 
-	Accounts.ui.config({
-		passwordSignupFields: "USERNAME_ONLY"
-	});
+Accounts.ui.config({
+	passwordSignupFields: "USERNAME_ONLY"
+});
 }
 
 Meteor.methods({
@@ -83,8 +78,8 @@ if (Meteor.isServer) {
 		});
 	});
 
-	Meteor.publish('allLikes', function publishFunction() {
-		return Likes.find({}, {sort: {date: -1}});
-	});
+	// Meteor.publish('allLikes', function publishFunction() {
+	// 	return Likes.find({}, {sort: {date: -1}});
+	// });
 
 }
