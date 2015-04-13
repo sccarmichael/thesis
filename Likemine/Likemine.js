@@ -23,10 +23,7 @@ if (Meteor.isClient) {
 
 			Meteor.call("addLike", text);
 
-    // Clear form
     event.target.text.value = "";
-
-    // Prevent default form submit
     return false;
 }
 
@@ -38,14 +35,6 @@ if (Meteor.isClient) {
 		}
 	});
 
-
-	Template.like.helpers({
-		isOwner: function () {
-			return this.owner === Meteor.userId();
-		}
-	});
-
-
 	Accounts.ui.config({
 		passwordSignupFields: "USERNAME_ONLY"
 	});
@@ -53,7 +42,6 @@ if (Meteor.isClient) {
 
 Meteor.methods({
 	addLike: function (text) {
-    // Make sure the user is logged in before inserting a like
     if (! Meteor.userId()) {
     	throw new Meteor.Error("not-authorized");
     }
@@ -72,10 +60,12 @@ deleteLike: function (likeId) {
 
 });
 
-Meteor.publish("likes", function () {
-	return Likes.find({
+if (Meteor.isServer) {
+  Meteor.publish("likes", function () {
+    return Likes.find({
 		$or: [
 		{ owner: this.userId }
 		]
 	});
 });
+}
