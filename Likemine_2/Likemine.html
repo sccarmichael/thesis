@@ -12,18 +12,12 @@
 		</div>
 
 		<div id="content">
+
 			{{#if currentUser}}
+			
 			<div class="row">
-				<div class="col-sm-6">
-					{{> resultsblock}}
-				</div>
-				
-				<div class="col-sm-6">
-					{{> resultsContainer}}
-				</div>
-
+				{{> loggedIn}}
 			</div>
-
 
 			{{else}}
 
@@ -64,17 +58,9 @@
 	</li>
 </template>
 
-<template name="resultsContainer">
-	{{#if isStep 1}}
-	{{> stumped}} 
-	{{else}}
-	{{> recs}}
-	{{/if}}
-</template>
-
-<template name="resultsblock">
-	<div class="resultsblock">
-		<div class="row">
+<template name="loggedIn">
+	<div class="col-sm-6">
+		<div class="resultsblock">
 			<h4>A band that I love is...</h4>
 			<form class="new-like">
 				<input class type="text" name="text" placeholder="Band name" />
@@ -82,7 +68,7 @@
 			<div class="results">
 				<ul>
 					{{#each likes}}
-					{{> like}}
+						{{> like}}
 					{{/each}}
 				</ul>
 			</div>
@@ -92,7 +78,11 @@
 
 		</div>
 	</div>
+	<div class="col-sm-6">
+		{{> stumped}} 
+	</div>
 </template>
+
 
 <template name="stumped">
 	<div id="stumped" style="margin:20px">
@@ -102,7 +92,7 @@
 		</h2>
 	</div> 
 </template>
-
+<!-- 
 <template name="recs">
 	<div id="textblock">
 		<div class="row">
@@ -116,7 +106,7 @@
 			</div>
 		</div>
 	</div>
-</template>	
+</template>	 -->
 
 <!-- <template name="submit">
 	<button class="submit"></button>
