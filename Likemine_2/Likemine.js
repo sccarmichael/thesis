@@ -3,12 +3,18 @@ Likes = new Mongo.Collection("likes");
 if (Meteor.isClient) {
 
 	Meteor.subscribe("likes");
-	// Meteor.subscribe("allLikes");
+	Meteor.subscribe("allLikes");
 
 	// Session.setDefault("currentStep", 1);
 
 	Template.body.helpers({
 		likes: function () {
+			return Likes.find({}, {owner:this.userId, sort: {createdAt: -1}});
+		}
+	});
+
+		Template.body.helpers({
+		allLikes: function () {
 			return Likes.find({}, {sort: {createdAt: -1}});
 		}
 	});
@@ -77,17 +83,19 @@ Meteor.methods({
 
 });
 
-// if (Meteor.isServer) {
+if (Meteor.isServer) {
 
 	Meteor.publish("likes", function () {
 		return Likes.find({
-			$or: [
-			{ owner: this.userId }
-			]
+			owner: this.userId
+
 		});
 	});
-// }
-	// Meteor.publish('allLikes', function publishFunction() {
-	// 	return Likes.find({}, {sort: {date: -1}});
-	// });
+
+	Meteor.publish('allLikes', function () {
+		return Likes.find();
+	});
+
+
+}
 
