@@ -151,10 +151,9 @@ ul {
 
 #compare {
 	float: right;
-	font-weight: bold;
-	background: white;
-	font-size: 2em;
-	border: none;
+	margin-right: 30px;
+	margin-top: 0px;
+
 }
 
 li {

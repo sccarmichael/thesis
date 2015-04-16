@@ -2,22 +2,25 @@ Likes = new Mongo.Collection("likes");
 
 if (Meteor.isClient) {
 
-	Meteor.subscribe("likes");
 	Meteor.subscribe("allLikes");
+	Meteor.subscribe("likes");
+	
 
 	// Session.setDefault("currentStep", 1);
 
-	Template.body.helpers({
-		likes: function () {
-			return Likes.find({}, {owner:this.userId, sort: {createdAt: -1}});
+		Template.body.helpers({
+		allLikes: function () {
+			return Likes.find({text: "test"});
 		}
 	});
 
-		Template.body.helpers({
-		allLikes: function () {
+	Template.body.helpers({
+		likes: function () {
 			return Likes.find({}, {sort: {createdAt: -1}});
 		}
 	});
+
+
 
 	Template.body.events({
 		"submit .new-like": function (event) {
@@ -85,15 +88,17 @@ Meteor.methods({
 
 if (Meteor.isServer) {
 
-	Meteor.publish("likes", function () {
-		return Likes.find({
-			owner: this.userId
-
-		});
-	});
 
 	Meteor.publish('allLikes', function () {
 		return Likes.find();
+	});
+
+	Meteor.publish("likes", function () {
+		return Likes.find({
+			$or: [
+			{ owner: this.userId }
+			]
+		});
 	});
 
 
