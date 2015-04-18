@@ -5,6 +5,7 @@ if (Meteor.isClient) {
 
 	Meteor.subscribe("likes");
 
+
 	// Session.setDefault("currentStep", 1);
 
 	Template.body.helpers({
@@ -48,12 +49,6 @@ if (Meteor.isClient) {
 	Accounts.ui.config({
 		passwordSignupFields: "USERNAME_ONLY"
 	});
-
-	
-console.log(this.owner);
-var owner = Meteor.users.findOne(this.owner);
-console.log(owner);
-}
 
 
 Meteor.methods({
