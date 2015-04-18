@@ -3,25 +3,15 @@ Likes = new Mongo.Collection("likes");
 
 if (Meteor.isClient) {
 
-	// Meteor.subscribe("allLikes");
 	Meteor.subscribe("likes");
-	
 
 	// Session.setDefault("currentStep", 1);
-
-		Template.body.helpers({
-		allLikes: function () {
-			return Likes.find({text: "text"});
-		}
-	});
 
 	Template.body.helpers({
 		likes: function () {
 			return Likes.find({}, {sort: {createdAt: -1}});
 		}
 	});
-
-
 
 	Template.body.events({
 		"submit .new-like": function (event) {
@@ -36,19 +26,9 @@ if (Meteor.isClient) {
 
 	});
 
-
-	// 	Template.resultsblock.events({
-	// 	"click #button": function() {
-	// 		var step = Session.get('currentStep');
-	// 		return Session.set('currentStep', step + 1);
-	// 		console.log(currentStep);
-	// 	}
-	// });
-
-	// Template.resultsContainer.helpers({
-	// 	isStep: function(n) {
-	// 		console.log(n);
-	// 		return Session.equals('currentStep', n);
+	// Template.rec.helpers({
+	// 	recs: function () {
+	// 		return Likes.find({}, {sort: {createdAt: -1}});
 	// 	}
 	// });
 
@@ -68,6 +48,11 @@ if (Meteor.isClient) {
 	Accounts.ui.config({
 		passwordSignupFields: "USERNAME_ONLY"
 	});
+
+	
+console.log(this.owner);
+var owner = Meteor.users.findOne(this.owner);
+console.log(owner);
 }
 
 
@@ -89,19 +74,15 @@ Meteor.methods({
 
 if (Meteor.isServer) {
 
-
-	Meteor.publish('allLikes', function () {
-		return Likes.find();
-	});
-
 	Meteor.publish("likes", function () {
-		return Likes.find({
+		return Likes.find(
+		{
 			$or: [
 			{ owner: this.userId }
 			]
-		});
+		}
+		);
 	});
-
 
 }
 
