@@ -1,8 +1,9 @@
 Likes = new Mongo.Collection("likes");
 
+
 if (Meteor.isClient) {
 
-	Meteor.subscribe("allLikes");
+	// Meteor.subscribe("allLikes");
 	Meteor.subscribe("likes");
 	
 
@@ -10,7 +11,7 @@ if (Meteor.isClient) {
 
 		Template.body.helpers({
 		allLikes: function () {
-			return Likes.find({text: "test"});
+			return Likes.find({text: "text"});
 		}
 	});
 

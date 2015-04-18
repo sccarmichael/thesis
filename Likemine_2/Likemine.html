@@ -37,9 +37,7 @@
 						<h4>Recommended bands:</h4>
 						<div class="results">
 							<ul>
-								{{#each allLikes}}
-								{{> allLike}}
-								{{/each}}
+								
 							</ul>
 						</div>
 					</div>
@@ -77,7 +75,6 @@
 
 
 
-
 <template name="like">
 	<li class="{{#if checked}}checked{{/if}}">
 		<button class="delete">&times;</button>
@@ -100,36 +97,3 @@
 		</h2>
 	</div> 
 </template>
-<!-- 
-<template name="recs">
-	<div id="textblock">
-		<div class="row">
-			<h4>Recommended bands:</h4>
-			<div class="results">
-				<ul>
-					{{#each likes}}
-					{{> like}}
-					{{/each}}
-				</ul>
-			</div>
-		</div>
-	</div>
-</template>	 -->
-
-<!-- <template name="submit">
-	<button class="submit"></button>
-</template>
-
-<template name="recs">
-	<li>
-		<h3>{{recs}}</h3>
-	</li>
-</template>
-
-<template name="recs"> 
-	<div class="Likes">
-		{{#each likes}}
-		{{text}}<br>
-		{{/each}}
-	</div>
-</template>   -->
