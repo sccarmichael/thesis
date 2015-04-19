@@ -6,12 +6,17 @@
           <h1>What do you really love?</h1>
         </div>
         <div class="textblock">
-          <div id="row">
-            <img class="icon" src="images/Like.png" style="margin-top:30px">
+
+            <img class="icon" src="images/Like.png" style="margin-top:20px">
             <h2>These days most of the things we "Like" on social media aren't actually things that we like in real life. As a result, it can be hard to find new stuff.</h2>
-            <img class="icon" src="images/Checks.png" style="float:right; margin-top:30px">
+          </div>
+            <div class="textblock">
+
+            <img class="icon" src="images/Checks.png" style="float:right; margin-top:20px">
             <h2 style="text-align:right">LikeMine is a better way to get recommendations. It's easy; you list the things that you like, and we'll use them to find likeminded people from around the world.</h2> 
-            <img class="icon" src="images/Music.png" style="margin-top:30px">
+          </div>
+          <div class="textblock">
+            <img class="icon" src="images/Music.png" style="margin-top:20px">
             <h2>Sign in, then add your favorite musical artists to your Favorites list. When you click "Submit" we'll find people who like most of them too and show you some bands that they love but you might not know about.</h2>
           </div>
           <div id="row">
@@ -20,7 +25,6 @@
         </div>
       </div>
     </div>
-  </div>
 </template>
 
 <template name = 'input'>
@@ -34,11 +38,15 @@
           </form>
           <div class="results">
             <ul>
+<<<<<<< HEAD
             {{#each likes}}
             {{> like}}
             {{/each}}
-            <li class="text">
-          </li>
+=======
+              {{#each likes}}
+              {{> like}}
+              {{/each}}
+>>>>>>> origin/master
             </ul>
             <a type="submit" class="btn btn-default" id="goback" href='{{ pathFor 'home'}}'>Go back</a>
             <a type="submit" class="btn btn-primary" href='{{ pathFor 'results'}}' id="compare">Submit all</a>
@@ -57,9 +65,9 @@
         <h4>Recommended for you:</h4>
         <div class="results">
           <ul>
-<!--             {{#each rec}}
-            {{> rec}}
-            {{/each}} -->
+              {{#each recs}}
+              {{> rec}}
+              {{/each}}
           </ul>
           <a type="submit" class="btn btn-default" id="goback" href='{{ pathFor 'input'}}'>Go back</a>
         </div>
@@ -69,8 +77,14 @@
 </template>  
 
 <template name="like">
-  <li class="{{#if checked}}checked{{/if}}">
+  <li>
     <button class="delete">&times;</button>
+    <h3 class="text"> {{text}}</h3>
+  </li>
+</template>
+
+<template name="rec">
+  <li>
     <h3 class="text"> {{text}}</h3>
   </li>
 </template>

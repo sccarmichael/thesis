@@ -9,3 +9,5 @@ iron:router
 bootstrap
 accounts-ui
 accounts-password
+accounts-base
+artwells:accounts-guest
