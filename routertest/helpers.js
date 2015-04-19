@@ -1,14 +1,15 @@
 if (Meteor.isClient) {
 
     Meteor.subscribe("likes");
+    Meteor.subscribe("userData");
 
-  Template.articles.helpers({
+  Template.input.helpers({
     likes: function () {
       return Likes.find({}, {sort: {createdAt: -1}});
     }
   });
 
-  Template.articles.events({
+  Template.input.events({
     "submit .new-like": function (event) {
 
       var text = event.target.text.value;

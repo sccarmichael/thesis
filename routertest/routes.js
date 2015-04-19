@@ -7,16 +7,26 @@ Router.map(function () {
   this.route('home', {
     path: '/',
   });
-  this.route('instructions', {
-    path: '/how-it-works',
-  });
-  this.route('results', {
-path:'/results',
-  });
 
   this.route('input', {
-path:'/my-list',
+    path:'/my-list',
+    data: {
+        myList: function() {return Likes.find({owner:"sccarmichael"})
+    },
+  }
   });
+
+  this.route('results', {
+    path:'/results',
+    data: function(){
+      return {
+        myList: Likes.find(),
+        rec: Likes.find(),
+      }
+    },
+  });
+
+
 
   // this.route('articles', {
   //   // articles now under `articleList` instead of `this`
