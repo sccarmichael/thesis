@@ -1,12 +1,32 @@
 if (Meteor.isClient) {
 
-    Meteor.subscribe("likes");
+  Meteor.subscribe("likes");
+  Meteor.subscribe("recommendations");
 
   Template.input.helpers({
     likes: function () {
       return Likes.find({owner:Meteor.userId()}, {fields:{"text":1}},{sort: {createdAt: -1}});
     }
   });
+
+//   Template.input.helpers({
+//   settings: function() {
+//     return {
+//       position: "bottom",
+//       limit: 10,
+//       rules: [
+//         {
+//           collection: Likes,
+//           field: "text",
+//           options: '',
+//           matchAll: true,
+//           filter: { type: "autocomplete" },
+//           template: Template.like
+//         }
+//       ]
+//     };
+//   }
+// });
 
   Template.input.events({
     "submit .new-like": function (event) {
@@ -30,10 +50,13 @@ if (Meteor.isClient) {
     }
   });
 
-    Template.results.helpers({
+    Template.rec.helpers({
     recs: function () {
-      // Meteor.call("ignoreCurrentUser", Meteor.userId());
-      return Likes.find({owner:{$ne:Meteor.userId()}},{fields:{"text":1}},{sort: {createdAt: -1}});
+      // var pipeline = [
+      // {owner:{$ne:Meteor.userId()}},{fields:{"text":1}},{sort: {createdAt: -1}}}
+      // ]
+      return Recs.find()
+        // {owner:{$ne:Meteor.userId()}},{fields:{"text":1}},{sort: {createdAt: -1}});
     }
   });
 

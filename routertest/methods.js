@@ -14,8 +14,4 @@ Meteor.methods({
         Likes.remove(likeId);
     },
 
-    ignoreCurrentUser: function (userId) {
-         Likes.find({owner:{$ne:Meteor.userId()}},{fields:{"text":1}},{sort: {createdAt: -1}});
-    }
-
 });

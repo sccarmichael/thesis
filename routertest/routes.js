@@ -21,7 +21,7 @@ Router.map(function () {
     data: function(){
       return {
         myList: Likes.find(),
-        rec: Likes.find(),
+        rec: Recs.find(),
       }
     },
   });

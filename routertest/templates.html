@@ -34,15 +34,14 @@
         <div class="inputblock">
           <h4>A band that I love is...</h4>
           <form class="new-like">
+<!--                         {{> inputAutocomplete settings=settings type="text" name="text" class="input-xlarge" placeholder="Band name"}} -->
             <input type="text" name="text" placeholder="Band name" />
           </form>
           <div class="results">
             <ul>
-
               {{#each likes}}
               {{> like}}
               {{/each}}
-
             </ul>
             <a type="submit" class="btn btn-default" id="goback" href='{{ pathFor 'home'}}'>Go back</a>
             <a type="submit" class="btn btn-primary" href='{{ pathFor 'results'}}' id="compare">Submit all</a>
