@@ -10,6 +10,10 @@ Router.map(function () {
 
   this.route('input', {
     path:'/my-list',
+  //   data: {
+  //       myList: function() {return Likes.find({owner:"sccarmichael"})
+  //   },
+  // }
   });
 
   this.route('results', {

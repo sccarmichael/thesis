@@ -1,7 +1,6 @@
 if (Meteor.isClient) {
 
     Meteor.subscribe("likes");
-    Meteor.subscribe("allLikes");
 
   Template.input.helpers({
     likes: function () {
@@ -25,12 +24,6 @@ if (Meteor.isClient) {
     }
   });
 
-  Template.input.events({
-    "click .compare": function () {
-      Meteor.call("addList", text);
-    }
-  });
-
   Template.like.helpers({
     isOwner: function () {
       return this.owner === Meteor.userId();
@@ -39,6 +32,7 @@ if (Meteor.isClient) {
 
     Template.results.helpers({
     recs: function () {
+      // Meteor.call("ignoreCurrentUser", Meteor.userId());
       return Likes.find({owner:{$ne:Meteor.userId()}},{fields:{"text":1}},{sort: {createdAt: -1}});
     }
   });

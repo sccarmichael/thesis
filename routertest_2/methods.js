@@ -10,20 +10,12 @@ Meteor.methods({
         });
     },
 
-    addList: function (text) {
-        AllLikes.insert({
-            text:text,
-            owner:Meteor.userId()
-
-        });
-    },
-
     deleteLike: function (likeId) {
         Likes.remove(likeId);
     },
 
-    // ignoreCurrentUser: function (userId) {
-    //      Likes.find({owner:{$ne:Meteor.userId()}},{fields:{"text":1}},{sort: {createdAt: -1}});
-    // }
+    ignoreCurrentUser: function (userId) {
+         Likes.find({owner:{$ne:Meteor.userId()}},{fields:{"text":1}},{sort: {createdAt: -1}});
+    }
 
 });
