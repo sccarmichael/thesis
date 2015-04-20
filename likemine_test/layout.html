@@ -1,0 +1,34 @@
+<head>
+  <link href='http://fonts.googleapis.com/css?family=Roboto:100,400' rel='stylesheet' type='text/css'>
+  <title>LikeMine</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<template name="layout">
+  <header>
+    {{> nav }}
+  </header>
+  <div id="wrapper" style="padding-bottom:70px">
+    {{> yield}}
+  </div>
+</template>
+
+<template name='nav'>
+  <div id="header">
+    <div id="row">
+      <a href="{{ pathFor 'home' }}">
+        <img class="headerlogo" src="images/Logo.png" alt="551b190215ec9fa344fb9608_Logo.png">
+      </a>
+      {{> navItems}}
+      {{> loginButtons align="right"}}   
+    </div>
+  </div>
+</template>
+
+<template name='navItems'>
+  <div class="btn-group btn-group-xs" role="group" aria-label="..." style="padding-top:10px">
+    <a type="button" class="btn btn-default" a href="{{pathFor 'home'}}">How it works</a>
+    <a type="button" class="btn btn-default" a href="{{ pathFor 'input'}}">My list</a>
+    <a type="button" class="btn btn-default" a href="{{ pathFor 'results'}}">Recommendations</a>
+  </div>
+</template>
