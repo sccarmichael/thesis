@@ -33,7 +33,7 @@ if (Meteor.isClient) {
     Template.results.helpers({
     recs: function () {
       // Meteor.call("ignoreCurrentUser", Meteor.userId());
-      return Likes.find({owner:{$ne:{text:this.text},{Meteor.userId()}}},{fields:{"text":1}},{sort: {createdAt: -1}});
+      return Likes.find({owner:{$ne:Meteor.userId()}},{fields:{"text":1}},{sort: {createdAt: -1}});
     }
   });
 
