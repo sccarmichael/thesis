@@ -97,7 +97,7 @@ body {
 }
 
 .new-like input {
-	width: 98%;
+	width: 75%;
 	height: 40px;
 	background-color: white;
 	font-family:'Roboto', sans-serif;
@@ -165,7 +165,9 @@ ul {
 }
 
 .search {
-	float:left;
+	position: relative;
+	float:right;
+	margin-left: 10px;
 	
 }
 

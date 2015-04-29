@@ -14,36 +14,44 @@ Router.map(function () {
   //       myList: function() {return Likes.find({owner:"sccarmichael"})
   //   },
   // }
-  });
+});
 
   this.route('results', {
     path:'/results',
     data: function(){
-      return {
-        myList: Likes.find(),
-        rec: Likes.find(),
+      console.log("routing");
+      var myLikes = Likes.find({owner: Meteor.userId()}).fetch();
+      var artistIds = [];
+      for (var i = 0; i < myLikes.length; i++) {
+        artistIds.push(myLikes[i].artistId);
       }
-    },
-  });
+
+      var sharedLikes = Likes.find({artistId: {$in: artistIds}, owner:{$ne:Meteor.userId()}}).fetch();
+      if (sharedLikes.length === 0) {
+        return {myLikes: [], rec: []};
+      }
 
 
+      var counts = _.countBy(sharedLikes, function(like) {
+        return like.username;
+      });
 
-  // this.route('articles', {
-  //   // articles now under `articleList` instead of `this`
-  //   data: {
-  //     articleList: function () {return Articles.find()},
-  //     selectedArticle: {}
-  //   }
-  // });
-  // this.route('article', {
-  //   path: '/article/:_id',
-  //   // provide data for both `articleList` and `selectedArticle`
-  //   data: function () {
-  //     return {
-  //       articleList: Articles.find(),
-  //       selectedArticle: Articles.findOne({_id: this.params._id})
-  //     }
-  //   },
-  //   template: 'articles'  //change template target
-  // });
+      var pairs = _.pairs(counts);
+      var sorted = _.sortBy(pairs, function(pair) { return -pair[1]; }); 
+      var username = sorted[0][0];
+      var count = sorted[0][1];
+
+
+      var recommendedLikes = Likes.find({artistId: {$nin: artistIds}, username:username});
+            console.log(recommendedLikes);
+      // if (sharedLikes.length === 0) {
+      //   return {myList: [],        rec: []};
+      // }
+      
+      return {
+       rec: recommendedLikes
+     }
+   },
+ });
+
 });

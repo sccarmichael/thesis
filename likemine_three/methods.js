@@ -1,9 +1,10 @@
 // #Security with allow and deny rules -> Adding posts using a method call
 Meteor.methods({
 
-    addLike: function (text) {
+    addLike: function (name,id) {
         Likes.insert({
-            text: text,
+            text: name,
+            artistId: id,
             createdAt: new Date(),
             owner: Meteor.userId(),
             username: Meteor.user().username
@@ -14,8 +15,7 @@ Meteor.methods({
         Likes.remove(likeId);
     },
 
-    ignoreCurrentUser: function (userId) {
-         Likes.find({owner:{$ne:Meteor.userId()}},{fields:{"text":1}},{sort: {createdAt: -1}});
-    }
+    
+
 
 });

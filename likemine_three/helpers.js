@@ -1,6 +1,6 @@
 if (Meteor.isClient) {
 
-    Meteor.subscribe("likes");
+  Meteor.subscribe("likes");
 
   Template.input.helpers({
     likes: function () {
@@ -11,18 +11,22 @@ if (Meteor.isClient) {
   Template.input.events({
     "submit .new-like": function (event) {
       var text = event.target.text.value;
-      Meteor.call("addLike", text);
-      event.target.text.value = "";
+      
+      var spotify = "https://api.spotify.com/v1/search";
+      $.getJSON(spotify, {"q": text, "type": "artist"},function(data){
+        var items = data.artists.items;
+        if (items.length > 0) {
+          console.log(items[0].id);
+          console.log(items[0].name);
+          Meteor.call("addLike", items[0].name,items[0].id);
+          event.target.text.value = "";
+        }
+        
+      });
+      $
       return false;
     }
 
-  });
-
-  Template.search.events({
-    "click .search": function () {
-      var spotify = "https://api.spotify.com/v1/search";
-      $.getJSON(spotify, {"q": "text", "type": "artist"})
-    }
   });
 
 
@@ -38,10 +42,10 @@ if (Meteor.isClient) {
     }
   });
 
-    Template.results.helpers({
-    recs: function () {
-      // Meteor.call("ignoreCurrentUser", Meteor.userId());
-      return Likes.find({owner:{$ne:Meteor.userId()}},{fields:{"text":1,"username":1}},{sort:{createdAt: -1}});
+  Template.results.helpers({
+    recs:function(){
+      console.log(this);
+      return Likes.find();
     }
   });
 

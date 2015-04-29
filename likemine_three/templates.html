@@ -7,58 +7,59 @@
         </div>
         <div class="textblock">
 
-            <img class="icon" src="images/Like.png" style="margin-top:20px">
-            <h2>These days most of the things we "Like" on social media aren't actually things that we like in real life. As a result, it can be hard to find new stuff.</h2>
-            <img class="icon" src="images/Checks.png" style="float:right; margin-top:20px">
-            <h2 style="text-align:right">LikeMine is a better way to get recommendations. It's easy; you list the things that you like, and we'll use them to find likeminded people from around the world.</h2> 
-            <img class="icon" src="images/Music.png" style="margin-top:20px">
-            <h2>Sign in, then add your favorite musical artists to your list. When you click "Submit" we'll find people who like most of them as well. Then we'll show you some bands that they love but you might not know about.</h2>
-          </div>
-
-            <a class="btn btn-primary" style="margin-top:5px" href='{{ pathFor 'input'}}' id="compare">Get started</a>
+          <img class="icon" src="images/Like.png" style="margin-top:20px">
+          <h2>These days most of the things we "Like" on social media aren't actually things that we like in real life. As a result, it can be hard to find new stuff.</h2>
+          <img class="icon" src="images/Checks.png" style="float:right; margin-top:20px">
+          <h2 style="text-align:right">LikeMine is a better way to get recommendations. It's easy; you list the things that you like, and we'll use them to find likeminded people from around the world.</h2> 
+          <img class="icon" src="images/Music.png" style="margin-top:20px">
+          <h2>Sign in, then add your favorite musical artists to your list. When you click "Submit" we'll find people who like most of them as well. Then we'll show you some bands that they love but you might not know about.</h2>
         </div>
+
+        <a class="btn btn-primary" style="margin-top:5px" href='{{ pathFor 'input'}}' id="compare">Get started</a>
       </div>
     </div>
+  </div>
 </template>
 
 <template name = 'input'>
   <div class="container">
-        <div class="inputblock">
-          <h4>A band that I love is...</h4>
-          <form class="new-like" style="margin-bottom:10px">
-            <input type="text" name="text" placeholder="Band name" />
-          </form>
-          <div class="results">
-            <ul style="padding-top:10px,padding-bottom:10px">
+    <div class="inputblock">
+      <h4>A band that I love is...</h4>
+      <form class="new-like" style="margin-bottom:10px">
+        <input type="text" name="text" placeholder="Band name" />
+        <input type="submit" class="btn btn-default" style="width:auto" value="Add"/>
+      </form>
 
-              {{#each likes}}
-              {{> like}}
-              {{/each}}
+      <div class="results">
+        <ul style="padding-top:10px,padding-bottom:10px">
 
-            </ul>
-            <button id="search" class="btn btn-default">Search</button>
-            <a type="submit" class="btn btn-default" id="goback" href='{{ pathFor 'home'}}'>Go back</a>
-            <a type="submit" class="btn btn-primary" href='{{ pathFor 'results'}}' id="compare">Submit all</a>
-          </div>
-        </div>
+          {{#each likes}}
+          {{> like}}
+          {{/each}}
+
+        </ul>
+        <a class="btn btn-default" id="goback" href='{{ pathFor 'home'}}'>Go back</a>
+        <a class="btn btn-primary" href='{{ pathFor 'results'}}' id="compare">Submit all</a>
+      </div>
+    </div>
   </div>
 
 </template>
 
 <template name= 'results'>
   <div class="container">
-      <div class="inputblock">
-        <h4>We found a match! There's somebody who likes 80% of the same bands that you do: here are a few that you didn't list.</h4>
-        <div class="results">
-          <ul>
-              {{#each recs}}
-              {{> rec}}
-              {{/each}}
-          </ul>
-          <a type="submit" class="btn btn-default" id="goback" href='{{ pathFor 'input'}}'>Go back</a>
-          <a type="submit" class="btn btn-success" id="compare">Open in Spotify</a>
-        </div>
+    <div class="inputblock">
+      <h4>We found a match! There's somebody who likes many of the same bands that you do: here are a few that you didn't list.</h4>
+      <div class="results">
+        <ul>
+          {{#each recs}}
+          {{> rec}}
+          {{/each}}
+        </ul>
+        <a type="submit" class="btn btn-default" id="goback" href='{{ pathFor 'input'}}'>Go back</a>
+        <a type="submit" class="btn btn-success" id="compare">Open in Spotify</a>
       </div>
+    </div>
   </div>
 </template>  
 
