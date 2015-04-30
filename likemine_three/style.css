@@ -24,7 +24,7 @@ body {
 
 #header {
 	padding:20px;
-	background:rgba(255,255,255,0.8);;
+	background:rgba(255,255,255);;
 	width: 100%;
 	margin: 0 auto;
 }
@@ -66,7 +66,7 @@ body {
 	border-radius: 5px;
 	padding: 10px;
 	margin-bottom: 10px;
-	background-color: rgba(255,255,255,0.85);
+	background-color: rgba(255,255,255,1);
 }
 
 .copy {
@@ -97,7 +97,7 @@ body {
 }
 
 .new-like input {
-	width: 75%;
+	width: 82%;
 	height: 40px;
 	background-color: white;
 	font-family:'Roboto', sans-serif;
@@ -121,7 +121,7 @@ body {
 	padding-top: 0px;
 }
 
-#stumped{
+/*#stumped{
 	height: auto;
 	margin-left: auto;
 	margin-right: auto;
@@ -130,7 +130,7 @@ body {
 	margin-bottom: 10px;
 	max-width: 98%;
 	background-color: rgba(255,255,255,0.8);
-}
+}*/
 
 .results {
 	height: auto;
@@ -162,13 +162,6 @@ ul {
 #compare {
 	margin-top: 10px;
 	float:right;
-}
-
-.search {
-	position: relative;
-	float:right;
-	margin-left: 10px;
-	
 }
 
 

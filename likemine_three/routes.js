@@ -40,7 +40,7 @@ Router.map(function () {
       var sorted = _.sortBy(pairs, function(pair) { return -pair[1]; }); 
       var username = sorted[0][0];
       var count = sorted[0][1];
-            console.log(count);
+      console.log(count);
 
 
       var recommendedLike = Likes.find({artistId: {$nin: artistIds}, username:username});
