@@ -42,12 +42,12 @@ if (Meteor.isClient) {
     }
   });
 
-  Template.results.helpers({
-    recs:function(){
-      console.log(this);
-      return Likes.find();
-    }
-  });
+  // Template.recoLike.helpers({
+  //   recs:function(){
+  //     // console.log(this);
+  //     return Likes.find();
+  //   }
+  // });
 
   Accounts.ui.config({
     passwordSignupFields: "USERNAME_ONLY"

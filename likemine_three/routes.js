@@ -28,7 +28,7 @@ Router.map(function () {
 
       var sharedLikes = Likes.find({artistId: {$in: artistIds}, owner:{$ne:Meteor.userId()}}).fetch();
       if (sharedLikes.length === 0) {
-        return {myLikes: [], rec: []};
+        return {myList: [],        rec: []};
       }
 
 
@@ -40,16 +40,16 @@ Router.map(function () {
       var sorted = _.sortBy(pairs, function(pair) { return -pair[1]; }); 
       var username = sorted[0][0];
       var count = sorted[0][1];
+            console.log(count);
 
 
-      var recommendedLikes = Likes.find({artistId: {$nin: artistIds}, username:username});
-            console.log(recommendedLikes);
+      var recommendedLike = Likes.find({artistId: {$nin: artistIds}, username:username});
       // if (sharedLikes.length === 0) {
       //   return {myList: [],        rec: []};
       // }
       
       return {
-       rec: recommendedLikes
+       results: recommendedLike
      }
    },
  });
